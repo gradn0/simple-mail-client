@@ -1,16 +1,23 @@
 from mail import *
 from authentication import *
 
+import os
+
 if __name__ == "__main__":
     #initialisation
     initDatabase() 
+    os.environ["MASTER_PASS"] = input("Enter master password: ")
 
     #main menu
     print("--------Simple Mail Server--------")
     while True:
         print("Options: ")
         useroption = input("1. Send\n2. View Mail\n3. Add account\n4. List accounts\n5. Remove account\n6. Exit\n")
-        if useroption == "3":
+        if useroption == "1":
+            sendMail()
+        elif useroption == "2":
+            getMail()
+        elif useroption == "3":
             newAccount()
         elif useroption == "4":
             listAccounts()
