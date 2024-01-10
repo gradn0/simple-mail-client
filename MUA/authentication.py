@@ -1,6 +1,7 @@
 import bcrypt
 import sqlite3
 from crypto import *
+from layout import *
 
 conn = sqlite3.connect("mail-client.db") 
 cur = conn.cursor()
@@ -42,14 +43,18 @@ def newAccount():
 
     print("\nAccount has been added\n")
 
-def listAccounts():
+def selectAccount():
     #return a list of usernames in the database
     accounts = cur.execute("SELECT username FROM accounts").fetchall()
+    ids = cur.execute("SELECT rowid FROM accounts").fetchall()
 
-    print("\n--------Accounts--------")
-    for account in accounts:
-        print(account[0])
+    heading("Accounts")
+    for i in range(0, len(ids)):
+        print(str(ids[i][0]) + ". " + accounts[i][0])
     print("\n")
+
+    selected_account =  input("Enter number to select account: ")
+    return accounts[int(selected_account)-1][0]
 
 def removeAccount(account):
     #deletes an account from the database
