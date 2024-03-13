@@ -43,7 +43,6 @@ def sendMail(username):
 
     print("\nEmail has been sent!\n")
 
-    #CHECK IF AUTHENTICATION SUCCESSFULL FIRST!!!!!-----------------------
     #re-encrypt with new nonce
     ctpassword, nonce = encrypt(password, key)
     cur.execute("UPDATE accounts SET  ctpassword = ? WHERE username = ?", (ctpassword, username, ))
@@ -92,13 +91,6 @@ def getMail(username):
     ret, bmail_ids = m.search(None, 'ALL') #data is a byte-like list of mail ids
     mail_ids = bmail_ids[0].decode().split(" ")
 
-    '''
-    #print list of inboxes
-    ret, folders = m.list()
-    for folder in folders:
-        print(folder.decode().split('"')[-1].lstrip())  
-    '''
-
     #print email previews
     heading("Inbox")
     for id in mail_ids:
@@ -117,7 +109,6 @@ def getMail(username):
     m.close()
     m.logout()
 
-    #CHECK IF AUTHENTICATION SUCCESSFULL FIRST!!!!!
     #re-encrypt with new nonce
     ctpassword, nonce = encrypt(password, key)
     cur.execute("UPDATE accounts SET  ctpassword = ? WHERE username = ?", (ctpassword, username, ))
