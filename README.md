@@ -1,5 +1,5 @@
 <h1>Simple CLI Email Client</h1>
-A minimal command line email client providing send/recieve functionality and the ability to manage multiple accounts.<br/>
+A minimal command line email client built in Python which provides send/recieve functionality and the ability to manage multiple accounts.<br/>
 <h2>Installation</h2>
 <ol>
   <li>Ensure python3 is installed on your system</li>
